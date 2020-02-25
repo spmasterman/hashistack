@@ -56,6 +56,12 @@ Vagrant.configure("2") do |config|
   # Bootstrap the box
   config.vm.provision "shell", inline: "/vagrant/scripts/bootstrap.sh"
 
+  # Install Docker
+  config.vm.provision "shell", inline: "/vagrant/scripts/install_docker.sh"
+
+  # Install Java
+  config.vm.provision "shell", inline: "/vagrant/scripts/install_java.sh"
+
   # Setup Consul User
   config.vm.provision "shell", inline: "/vagrant/scripts/create_user.sh", env: {
       "GROUP" => consul_group,

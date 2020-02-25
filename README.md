@@ -14,8 +14,14 @@ optionally
 
 #### 2. Clone repo ####
 
-#### 3. Issue ####
+#### 3. Up ####
 
 `vagrant up`
 
+Interact from the command line 
 
+`nomad plan myjob.nomad` etc
+
+#### 4. Cleanup ####
+
+`vagrant halt && vagrant destroy`
