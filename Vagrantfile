@@ -1,14 +1,6 @@
 # -*- mode: ruby -*-
 # vi: set ft=ruby :
 
-# DHCP patch issue - not sure whats happening
-# https://github.com/hashicorp/vagrant/issues/8878
-class VagrantPlugins::ProviderVirtualBox::Action::Network
-  def dhcp_server_matches_config?(dhcp_server, config)
-    true
-  end
-end
-
 # Networking
 private_ip = ENV['PRIVATE_IP'] || "192.168.50.150"
 consul_host_port = ENV['CONSUL_HOST_PORT'] || 8500
@@ -47,7 +39,6 @@ Vagrant.configure("2") do |config|
   config.vm.network :forwarded_port, guest: 8500, host: consul_host_port, auto_correct: true
   config.vm.network :forwarded_port, guest: 8200, host: vault_host_port, auto_correct: true
   config.vm.network :forwarded_port, guest: 4646, host: nomad_host_port, auto_correct: true
-  config.vm.network "private_network", type: "dhcp"
 
   # Use base_box set at the top of this file
   config.vm.box = base_box
